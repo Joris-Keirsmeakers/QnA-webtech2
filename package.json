@@ -1,0 +1,25 @@
+{
+  "name": "qna-webtech2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joris-Keirsmeakers/QnA-webtech2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joris-Keirsmeakers/QnA-webtech2/issues"
+  },
+  "homepage": "https://github.com/Joris-Keirsmeakers/QnA-webtech2#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
