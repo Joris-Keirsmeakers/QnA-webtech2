@@ -10,7 +10,7 @@ const Account = require('../models/users');
 
 passport.use(new FacebookStrategy({
         clientID: '352447775208970',
-        clientSecret: '7f43fb4f8c84199809bc9520cd19b8b8',
+        clientSecret: 'b768cad870ad03f527e50bcee8a073b7',
         profileFields: ["id", "displayName", "gender", "first_name", "picture.type(large)", "last_name"],
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
@@ -65,8 +65,8 @@ router.get('/callback',
                 console.log(err);  // handle errors!
             }
             if (!err && user.role !== "") {
-                if(req.user.role=='Student'){
-                    res.redirect('/profile');
+                if(req.user.role=='user'){
+                    res.redirect('/home');
                 }else{
                     res.redirect('/admin');
                 }

@@ -15,7 +15,7 @@ var Account = new Schema({
     //date:String
     discussions: Array,
 } ,{
-    collection: 'DemoOrDie'
+    collection: 'QnA'
 });
 
 module.exports = mongoose.model('Account', Account);

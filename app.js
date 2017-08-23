@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 var expressvalidator = require('express-validator');
 var facebook = require('./routes/facebook');
 var index = require('./routes/index');
-
+var passport = require('passport')
+var home = ('./routes/home');
 var config = require('./config/config.js');
 mongoose.connect(config.database);
 
@@ -24,7 +25,11 @@ app.listen(3000, () => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use('/auth/facebook', facebook);
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use('/auth/facebook', facebook);
 app.use('/', index);
+app.use('/home', home);
+
 module.exports = app;

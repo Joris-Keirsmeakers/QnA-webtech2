@@ -8,13 +8,7 @@ var users = require('../models/users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index.pug', { title: 'QnA' });
+  res.render('home.pug', { title: 'QnA sessions nearby' });
 });
 
 module.exports = router;
-
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-};
