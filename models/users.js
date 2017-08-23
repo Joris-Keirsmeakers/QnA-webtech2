@@ -13,10 +13,9 @@ var Account = new Schema({
     //vote:Boolean,
     //onStage:Boolean,
     //date:String
-    discussions:Number,
-    comments:Number
+    discussions: Array,
 } ,{
-    collection: 'DemoOrDie'
+    collection: 'QnA'
 });
 
 module.exports = mongoose.model('Account', Account);
