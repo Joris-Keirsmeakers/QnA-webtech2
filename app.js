@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var expressvalidator = require('express-validator');
 var facebook = require('./routes/facebook');
 var index = require('./routes/index');
-var passport = require('passport')
-var home = ('./routes/home');
+var passport = require('passport');
+var home = require('./routes/home');
 var config = require('./config/config.js');
 mongoose.connect(config.database);
 
