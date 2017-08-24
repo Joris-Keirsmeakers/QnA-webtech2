@@ -1,28 +1,34 @@
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
+var mongoose = require('mongoose');
+var schema = mongoose.Schema;
+
 const Discussion = require('../models/discussions.js');
 const User = require('../models/users.js');
 
-//const user= User.
+
 function createDiscussion(req,res,next){
-console.log(req.body);
+console.log(req.user.name, req.user.profilepic);
     const discussion = new Discussion({
       location:"",
       timestamp:"",
       creator:{
-        username:"",
-        avatar:""
+        username:req.user.name,
+        avatar:req.user.profilepic,
       },
-      question:"",
+      question:req.body.subjectfield,
       comments:{
         comment:{
           user:{
-            userame:"",
-            avatar:""
+            username:"",
+            avatar:"",
           },
-        text:""
+        text:"",
       },
       }
 
-   
+
 
     });
 

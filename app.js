@@ -7,6 +7,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var expressvalidator = require('express-validator');
 var passport = require('passport');
+var session = require('express-session');
 
 //database config
 var config = require('./config/config.js');
@@ -30,6 +31,8 @@ app.listen(3000, () => {
 //view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(session({ secret:'shhsecret'}));
 
 //passport opzetten
 app.use(passport.initialize());

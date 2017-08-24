@@ -15,7 +15,7 @@ passport.use(new FacebookStrategy({
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
+        //console.log(profile);
         Account.findOne({ name: profile.displayName }, function(err, user) {
             if(err) {
                 console.log(err);  // handle errors!
