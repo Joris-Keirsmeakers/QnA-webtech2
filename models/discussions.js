@@ -9,18 +9,18 @@ var discussion = new Schema({
     username: String,
     avatar:String
   },
-  question: String,
-  comments:{
-    comment:{
+  subject: String,
+  question:{
+    questionText:String,
+    comments:{
       user:{
         userame:String,
         avatar:String
       },
-    text:String
+    text:String},
   },
-  }
-
-},{
+},
+  {
     collection: 'QnA-discussions'
 });
 

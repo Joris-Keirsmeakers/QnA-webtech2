@@ -6,7 +6,7 @@ block content
   div.discussion-block
       
   block  create-discussion
-    form(method="post" action="/discussion")#discussion-create
+    form(method="post")#discussion-create
       label(for="subjectfield") What is the subject of your discussion?
       input(type="text" name="subjectfield" placeholder="enter your subject here").subjectfield
       button(type="submit") Let's start discussing!

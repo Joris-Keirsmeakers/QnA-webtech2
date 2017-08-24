@@ -17,19 +17,17 @@ console.log(req.user.name, req.user.profilepic);
         username:req.user.name,
         avatar:req.user.profilepic,
       },
-      question:req.body.subjectfield,
-      comments:{
-        comment:{
-          user:{
-            username:"",
-            avatar:"",
+      subject:req.body.subjectfield,
+      question:{
+        questionText:"",
+          comments:{
+            user:{
+              username:""
+              profilepic:""
+            },
+            text:"",
           },
-        text:"",
       },
-      }
-
-
-
     });
 
     discussion.save((err, result) => {
