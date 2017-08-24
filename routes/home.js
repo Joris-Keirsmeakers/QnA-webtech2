@@ -5,14 +5,17 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
 var users = require('../models/users');
-var discussions = require('../controller/discussion.js');
+var discussions = require('../models/discussions.js')
+var discussionC = require('../controller/discussion.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home.pug', { title: 'QnA' });
+  discussions.find({}, function(err, discussion) {
+    res.render('home.pug', {loadedDiscussions:discussion});
+  });
 });
 
 router.route('/')
-  .post(discussions.create);
+  .post(discussionC.create);
 
 module.exports = router;

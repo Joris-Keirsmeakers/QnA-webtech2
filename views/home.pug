@@ -4,6 +4,9 @@ block content
   block current-discussions 
   h3 Current discussions happening near you!
   div.discussion-block
+      each val in loadedDiscussions
+        p=val.subject
+      
       
   block  create-discussion
     form(method="post")#discussion-create

@@ -22,7 +22,7 @@ console.log(req.user.name, req.user.profilepic);
         questionText:"",
           comments:{
             user:{
-              username:""
+              username:"",
               profilepic:""
             },
             text:"",
@@ -35,7 +35,7 @@ console.log(req.user.name, req.user.profilepic);
       res.status(500);
       return res.send(err);
     }
-    res.send("HUZZAH");
+    res.redirect("/home");
   });
 }
 
