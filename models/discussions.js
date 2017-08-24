@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var discussion = new schema({
+var discussion = new Schema({
   location:String,
   timestamp:String,
   creator:{
@@ -15,8 +15,8 @@ var discussion = new schema({
       user:{
         userame:String,
         avatar:String
-      }
-      text:String
+      },
+    text:String
     }
   }
 
@@ -24,4 +24,4 @@ var discussion = new schema({
     collection: 'QnA-discussions'
 });
 
-module.exports = mongoose.model('Account', Account);
+module.exports = mongoose.model('discussion', discussion);

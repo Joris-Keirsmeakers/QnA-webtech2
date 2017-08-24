@@ -6,30 +6,38 @@ const mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
 var expressvalidator = require('express-validator');
-var facebook = require('./routes/facebook');
-var index = require('./routes/index');
 var passport = require('passport');
-var home = require('./routes/home');
+
+//database config
 var config = require('./config/config.js');
 mongoose.connect(config.database);
-
 var db = mongoose.connection;
 db.once('open',function(){
-    console.log("gelukt");
+    console.log("database connection gelukt");
 });
 
+///routes//
+var facebook = require('./routes/facebook');
+var index = require('./routes/index');
+var home = require('./routes/home');
+var discussion = require('./routes/discussion');
+
+//listen confirm//
 app.listen(3000, () => {
   console.log('App listening on port 3000!')
 });
 
+//view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+//passport opzetten
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth/facebook', facebook);
 app.use('/', index);
 app.use('/home', home);
+app.use('/discussion', discussion);
 
 module.exports = app;
