@@ -12,6 +12,9 @@ var discussion = new Schema({
   subject: String,
   question:{
     questionText:String,
+    author:{
+      userame:String,
+      avatar:String},
     comments:{
       user:{
         userame:String,

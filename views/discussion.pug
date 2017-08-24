@@ -2,5 +2,12 @@ extends layout
 
 block content
   h2=discussion.subject
-  p Asked by #{discussion.creator.username}
+  p Created by #{discussion.creator.username}
   img(src=discussion.creator.avatar)
+
+  form(method="post")#question-ask
+    label(for="questionfield") Ask a new question!
+    input(type="text" name="questionfield" placeholder="enter your question here").questionfield
+    button(type="submit") Ask away!
+    
+    

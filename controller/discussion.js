@@ -9,7 +9,6 @@ const User = require('../models/users.js');
 
 
 function createDiscussion(req,res,next){
-console.log(req.user.name, req.user.profilepic);
     const discussion = new Discussion({
       location:"",
       timestamp:"",
@@ -20,13 +19,16 @@ console.log(req.user.name, req.user.profilepic);
       subject:req.body.subjectfield,
       question:{
         questionText:"",
-          comments:{
+        author:{
+          userame:"",
+          avatar:""},
+        comments:{
             user:{
               username:"",
               profilepic:""
             },
             text:"",
-          },
+        },
       },
     });
 
@@ -40,8 +42,15 @@ console.log(req.user.name, req.user.profilepic);
 }
 
 
+function askQuestion(req,res,next){
+    var id = req.params.discussionId;
+    var question = req.body.questionfield
+    console.log(id, question);
+  };
+
 module.exports = {
   create: createDiscussion,
+  ask: askQuestion,
 //  list: listDiscussions,
 //  read: readDiscussion,
 //  update: updateDiscussion,

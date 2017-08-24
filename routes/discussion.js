@@ -13,4 +13,7 @@ router.get('/:discussionId',function(req,res,next){
   });
 });
 
+router.route('/:discussionId')
+  .post(discussionC.ask);
+
 module.exports = router;
