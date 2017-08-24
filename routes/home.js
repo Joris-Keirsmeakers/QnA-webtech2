@@ -8,7 +8,7 @@ var users = require('../models/users');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home.pug', { title: 'QnA sessions nearby' });
+  res.render('home.pug', { title: 'QnA' });
 });
 
 module.exports = router;

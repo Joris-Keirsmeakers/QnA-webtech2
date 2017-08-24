@@ -17,7 +17,7 @@ var discussion = new Schema({
         avatar:String
       },
     text:String
-    }
+  },
   }
 
 },{

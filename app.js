@@ -34,6 +34,12 @@ app.set('view engine', 'pug');
 //passport opzetten
 app.use(passport.initialize());
 app.use(passport.session());
+//Body-parser voor data te parsen
+app.use(bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+
 
 app.use('/auth/facebook', facebook);
 app.use('/', index);

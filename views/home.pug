@@ -3,10 +3,10 @@ extends layout
 block content 
   block current-discussions 
   h3 Current discussions happening near you!
-    div.discussion-block
+  div.discussion-block
       
   block  create-discussion
-    form(action="/discussion.js" method="post")#discussion-create
+    form(method="post" action="/discussion")#discussion-create
       label(for="subjectfield") What is the subject of your discussion?
       input(type="text" name="subjectfield" placeholder="enter your subject here").subjectfield
       button(type="submit") Let's start discussing!

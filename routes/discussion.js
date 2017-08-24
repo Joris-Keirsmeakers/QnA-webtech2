@@ -7,7 +7,6 @@ var schema = mongoose.Schema;
 var discussions = require('../controller/discussion.js');
 
 router.route('/')
-  //.get(discussions.list)
   .post(discussions.create);
 
 router.route('/:discussionId')
@@ -15,4 +14,7 @@ router.route('/:discussionId')
   //.put(discussions.update)
   //.delete(discussions.remove);
 
+  router.get('/', function(req, res, next) {
+    res.render('home.pug', { title: 'QnA' });
+  });
 module.exports = router;
