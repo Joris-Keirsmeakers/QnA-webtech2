@@ -9,11 +9,12 @@ var discussions = require('../models/discussions.js')
 var discussionC = require('../controller/discussion.js');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   discussions.find({}, function(err, discussion) {
     res.render('home.pug', {loadedDiscussions:discussion});
   });
 });
+
 
 router.route('/')
   .post(discussionC.create);

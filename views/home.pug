@@ -5,7 +5,8 @@ block content
   h3 Current discussions happening near you!
   div.discussion-block
       each val in loadedDiscussions
-        p=val.subject
+        a(href="./discussion/"+val.id)=val.subject
+        br
       
       
   block  create-discussion
