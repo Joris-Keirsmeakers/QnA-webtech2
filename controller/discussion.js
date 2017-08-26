@@ -17,19 +17,20 @@ function createDiscussion(req,res,next){
         avatar:req.user.profilepic,
       },
       subject:req.body.subjectfield,
-      question:{
+      questions:[
+        {
         questionText:"",
         author:{
           userame:"",
           avatar:""},
         comments:{
-            user:{
-              username:"",
-              profilepic:""
-            },
-            text:"",
-        },
-      },
+          user:{
+            username:"",
+            avatar:""
+          },
+          text:""}
+        }
+      ],
     });
 
     discussion.save((err, result) => {
@@ -41,11 +42,36 @@ function createDiscussion(req,res,next){
   });
 }
 
-
 function askQuestion(req,res,next){
+
     var id = req.params.discussionId;
     var question = req.body.questionfield
-    console.log(id, question);
+    console.log(req.user.name);
+    Discussion.update({ _id: req.params.discussionId },
+
+    //  {$addToSet:{courses:{$each:Selectedcourses}}},
+
+      {$push:
+        {questions:
+          {questionText:req.body.questionfield,
+           author:
+           {username:req.user.name,
+            avatar:req.user.profilepic
+          },
+          comments:[],
+          }
+        }
+      },
+
+
+
+      function (err,user) {
+            if(err){
+              console.log(err);
+            }}
+  ),
+
+    console.log("questioeeeaaen delivered", id)
   };
 
 module.exports = {

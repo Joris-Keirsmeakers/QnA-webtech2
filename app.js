@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
 var expressvalidator = require('express-validator');
 var passport = require('passport');
 var session = require('express-session');
@@ -32,16 +33,19 @@ app.listen(3000, () => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(session({ secret:'shhsecret'}));
+app.use(cookieParser());
 
-//passport opzetten
-app.use(passport.initialize());
-app.use(passport.session());
 //Body-parser voor data te parsen
 app.use(bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+
+
+app.use(session({ secret:'shhsecret'}));
+//passport opzetten
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/auth/facebook', facebook);
