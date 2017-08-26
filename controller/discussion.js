@@ -74,9 +74,13 @@ function askQuestion(req,res,next){
     console.log("questioeeeaaen delivered", id)
   };
 
+function comment(req,res){
+  Console.log("HAAAAAAAAAA")
+}
 module.exports = {
   create: createDiscussion,
   ask: askQuestion,
+  comment: comment
 //  list: listDiscussions,
 //  read: readDiscussion,
 //  update: updateDiscussion,
