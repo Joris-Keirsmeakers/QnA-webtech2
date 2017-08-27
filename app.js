@@ -42,7 +42,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 
-app.use(session({ secret:'shhsecret',
+app.use(session({ secret:'supersecretysecretstuff',
                   resave: true,
                   saveUninitialized: true}));
 //passport opzetten
