@@ -1,8 +1,12 @@
 extends layout
 
 block content
-  h1 Welcome to QnA where asking questions is possible without interupting the speaker.
+  header.index_header
 
-  div
-    button.btn
-      a(href="/auth/facebook" style={margin :'12px'}) Login with facebook
+  div.index_main  
+    h1 Welcome to QnA, where knowledge is shared!
+    div
+      button.btn
+        a(href="/auth/facebook" style={margin :'12px'}) Login with facebook
+      
+  footer.index.footer

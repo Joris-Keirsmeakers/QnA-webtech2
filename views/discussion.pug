@@ -1,7 +1,8 @@
 extends layout
 
 block content
-  block discussion-info
+  header.index_header
+  block.discussion-info
     h2=discussion.subject
     p Created by #{discussion.creator.username}
     img(src=discussion.creator.avatar)
@@ -10,7 +11,7 @@ block content
     form(method="post")#question-ask
       label(for="questionfield") Ask a new question!
       input(type="text" name="questionfield" placeholder="enter your question here").questionfield
-      button(type="submit") Ask away!
+      button(type="submit").btn Ask away!
       input(type="hidden" name="discussionId" value= discussion._id).discussionId
   
   block#questions
@@ -26,9 +27,9 @@ block content
           label(for="commentfield")
           input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
           input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
-          button(type="submit") Comment go!
+          button(type="submit").btn Comment go!
     
-              
+  footer.index.footer            
   script(src="/primus/primus.js")
   script(src='/js/questions.js')
   script(src='/js/comments.js')

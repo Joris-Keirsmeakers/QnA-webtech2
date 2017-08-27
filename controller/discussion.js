@@ -11,6 +11,7 @@ const User = require('../models/users.js');
 
 
 function createDiscussion(req,res,next){
+  if (req.body.subjectfield) {
     const discussion = new Discussion({
       location:"",
       creator:{
@@ -27,8 +28,8 @@ function createDiscussion(req,res,next){
     }
     return result;
     })
-    
-}
+
+}}
 
 function post(req,res,next){
 
