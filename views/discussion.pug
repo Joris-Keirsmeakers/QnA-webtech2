@@ -12,21 +12,19 @@ block content
       button(type="submit") Ask away!
   
   block questions
-    each val in discussion.questions
     
-      h4=val.questionText
-      div#comments
         -for (var i = 0; i < discussion.questions.length; i++)
-          each val in discussion.questions[i].comments
-            p=val.text
-          
+            h4=discussion.questions[i].questionText
+            div.comments
+            for comment in discussion.questions[i].comments
+              ul
+                li=comment.text
               
-          
-      form(method="post")#comment
-        label(for="commentfield")
-        input(type="hidden" name="Questionid" value=val._id)
-        input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
-        button(type="submit") Comment go!
+            form(method="post")#comment
+              label(for="commentfield")
+              input(type="hidden" name="Questionid" value=discussion.questions[i]._id)
+              input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
+              button(type="submit") Comment go!
       
     
     

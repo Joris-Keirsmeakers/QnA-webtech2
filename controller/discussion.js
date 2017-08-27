@@ -17,20 +17,6 @@ function createDiscussion(req,res,next){
         avatar:req.user.profilepic,
       },
       subject:req.body.subjectfield,
-      questions:[
-        {
-        questionText:"",
-        author:{
-          userame:"",
-          avatar:""},
-        comments:{
-          user:{
-            username:"",
-            avatar:""
-          },
-          text:""}
-        }
-      ],
     });
 
     discussion.save((err, result) => {
