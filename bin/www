@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
+var discussions = require('../models/discussions.js')
 
 /**
  * Get port from environment and store in Express.
@@ -25,19 +26,43 @@ var server = http.createServer(app);
 var Primus = require('primus');
 var primus = new Primus(server);
 primus.on('connection', function (spark) {
-  spark.write('to the client: hello connnection'); // spark.write send a message only to the one client
-  console.log("primus in action!");
+    spark.on("data",function (data){
+      console.log("data",data)
+      if(!!data && data.subject){
+        setTimeout(function(){
+          discussions.findOne({"subject":data.subject}, function(err,discussion){
+            console.log("discussion",discussion)
+            if (discussion) {
+              primus.write(discussion)
+            }
+          })
+        },500)
+      }
 
-/*  spark.on('data', function(data){
-    // HEADS UP! Instead of handling all separate events here in one handler,
-    // we could better use a plugin like https://github.com/primus/primus-emit
-    console.log(data);
-    primus.write("ALL HEAR" + data);
-    primus.write(data) // primus.write broadcasts a message to all connected clients
+      if(data.id && data.qfield){
+        console.log("check")
+        setTimeout(function(){
+          discussions.find({_id: data.id}, function(err,question){
+            console.log("discussion",question)
+            if (question) {
+            primus.write(question)
+            }
+          })
+        },500)
+      }
 
-  });
-*/
+      if(!!data && data.comment){
+        setTimeout(function(){
+          discussions.findOne({"subject":data.comment}, function(err,comment){
+            console.log("discussion",comment)
+            if (comment) {
+              primus.write(comment)
+            }
+          })
+        },500)
+      }
 
+    });
 });
 
 /**

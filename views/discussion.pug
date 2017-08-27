@@ -5,26 +5,33 @@ block content
     h2=discussion.subject
     p Created by #{discussion.creator.username}
     img(src=discussion.creator.avatar)
-  
+      
+  div.form
     form(method="post")#question-ask
       label(for="questionfield") Ask a new question!
       input(type="text" name="questionfield" placeholder="enter your question here").questionfield
       button(type="submit") Ask away!
+      input(type="hidden" name="discussionId" value= discussion._id).discussionId
   
-  block questions
-    
-        -for (var i = 0; i < discussion.questions.length; i++)
-            h4=discussion.questions[i].questionText
-            div.comments
-            for comment in discussion.questions[i].comments
-              ul
-                li=comment.text
+  block#questions
+    -for (var i = 0; i < discussion.questions.length; i++)
+      div.question
+        h4=discussion.questions[i].questionText
+        div.comments
+          for comment in discussion.questions[i].comments
+            ul
+              li=comment.text
               
-            form(method="post")#comment
-              label(for="commentfield")
-              input(type="hidden" name="Questionid" value=discussion.questions[i]._id)
-              input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
-              button(type="submit") Comment go!
-      
+        form(method="post").commentform
+          label(for="commentfield")
+          input(type="hidden" name="Questionid" value=discussion.questions[i]._id)
+          input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
+          button(type="submit") Comment go!
+    
+              
+  script(src="/primus/primus.js")
+  script(src='/js/questions.js')
+  scripts(src="/js/comments.js")
+            
     
     

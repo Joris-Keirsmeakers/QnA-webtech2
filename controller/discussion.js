@@ -11,9 +11,8 @@ const User = require('../models/users.js');
 
 
 function createDiscussion(req,res,next){
-    /*const discussion = new Discussion({
+    const discussion = new Discussion({
       location:"",
-      timestamp:"",
       creator:{
         username:req.user.name,
         avatar:req.user.profilepic,
@@ -22,17 +21,13 @@ function createDiscussion(req,res,next){
     });
 
     discussion.save((err, result) => {
-    if (err) {
+      if (err) {
       res.status(500);
       return res.send(err);
     }
-*/
-  //  spark.emit('post_discussion', {result: result});
-    //res.redirect("/home");
-  //});
-
-console.log("fu");
-
+    return result;
+    })
+    
 }
 
 function post(req,res,next){

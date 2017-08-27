@@ -8,19 +8,21 @@ primus = Primus.connect("", {
   }
 });
 
+
 var form = document.getElementById("discussion-create");
 
 form.addEventListener("submit", function(e){
-    //e.preventDefault();
     var subject = form.querySelector(".subjectfield").value;
-    console.log(subject);
-    primus.write({  data: subject }); // send our emotion to the server
-
-    //primus.emit('foo', { data: subject });
-
+    primus.write({ subject: subject });
 });
 
 primus.on("data", function(data) {
-    console.log("PRIMUS CLIENT DATA RECEIVED!" + data.data);
-  //  spark.write({ data: subject }); // send our emotion to the server
+  console.log(data)
+  console.log("Data received!" + data)
+  if (data && data.subject) {
+    var listItem="<a href=/discussion/"+data._id+">"+data.subject
+    var div = document.createElement("div");
+    div.innerHTML = listItem;
+    document.getElementById("discussion-block").appendChild(div);
+  }
 })
