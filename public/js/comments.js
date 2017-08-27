@@ -8,14 +8,21 @@ primus = Primus.connect("", {
 });
 
 
-var form = document.querySelector("Commentform");
 
-form.addEventListener("submit", function(e){
+var x = document.getElementsByClassName("commentform");
+
+for (i = 0; i < x.length; i++) {
+    var form = x[i];
+    form.addEventListener("submit",function(e){
+
+    e.preventDefault();
+    console.log("hey")
     var cfield = form.querySelector(".commentfield").value;
-    var id =  form.querySelector("questionId").value;
-
+    console.log(cfield)
+    var id = form.querySelector(".QuestionId").value;
     primus.write({ cfield:cfield, id:id });
-});
+  });
+}
 /*
 primus.on("data", function(data) {
   console.log(data)

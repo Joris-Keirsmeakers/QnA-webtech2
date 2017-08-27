@@ -24,14 +24,14 @@ block content
               
         form(method="post").commentform
           label(for="commentfield")
-          input(type="hidden" name="Questionid" value=discussion.questions[i]._id)
+          input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
           input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
           button(type="submit") Comment go!
     
               
   script(src="/primus/primus.js")
   script(src='/js/questions.js')
-  scripts(src="/js/comments.js")
+  script(src='/js/comments.js')
             
     
     
