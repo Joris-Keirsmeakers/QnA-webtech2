@@ -3,19 +3,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Account = new Schema({
+var user = new Schema({
     name:String,
     profilepic:String,
-    //courses: Array,
-    role: String,
-    //demo:Number,
-    //die:Number,
-    //vote:Boolean,
-    //onStage:Boolean,
-    //date:String
-    discussions: Array,
 } ,{
-    collection: 'QnA'
+    collection: 'QnA-users'
 });
 
-module.exports = mongoose.model('Account', Account);
+module.exports = mongoose.model('User', user);

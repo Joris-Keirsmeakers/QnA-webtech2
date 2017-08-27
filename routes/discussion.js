@@ -4,19 +4,16 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
-var users = require('../models/users');
 var discussions = require('../models/discussions.js')
 var discussionC = require('../controller/discussion.js');
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  discussions.find({}, function(err, discussion) {
-    res.render('home.pug', {loadedDiscussions:discussion});
+router.get('/:discussionId',function(req,res,next){
+  discussions.findOne({_id:req.params.discussionId}, function(err, discussion){
+    res.render("discussion.pug", {discussion:discussion})
   });
 });
 
-
-router.route('/')
-  .post(discussionC.create);
+router.route('/:discussionId')
+  .post(discussionC.post);
 
 module.exports = router;

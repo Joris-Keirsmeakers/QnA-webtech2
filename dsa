@@ -1,0 +1,3 @@
+{"errors":
+{"question":
+{"message":"Cast to String failed for value \"{ subjectfield: '1234' }\" at path \"question\"","name":"CastError","stringValue":"\"{ subjectfield: '1234' }\"","kind":"String","value":{"subjectfield":"1234"},"path":"question","reason":{"message":"Cast to string failed for value \"{ subjectfield: '1234' }\" at path \"question\"","name":"CastError","stringValue":"\"{ subjectfield: '1234' }\"","kind":"string","value":{"subjectfield":"1234"},"path":"question"}}},"_message":"discussion validation failed","message":"discussion validation failed: question: Cast to String failed for value \"{ subjectfield: '1234' }\" at path \"question\"","name":"ValidationError"}

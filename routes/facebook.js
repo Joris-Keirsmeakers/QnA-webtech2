@@ -15,7 +15,7 @@ passport.use(new FacebookStrategy({
         callbackURL: "http://localhost:3000/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(profile);
+        //console.log(profile);
         Account.findOne({ name: profile.displayName }, function(err, user) {
             if(err) {
                 console.log(err);  // handle errors!
@@ -26,14 +26,6 @@ passport.use(new FacebookStrategy({
                 user = new Account({
                     name: profile.displayName,
                     profilepic:  "https://graph.facebook.com/" + profile.id + "/picture" + "?type=normal" + "&access_token=" + accessToken,
-                    //courses:"",
-                    role:"user",
-                    //demo:0,
-                    //die:0,
-                    //vote:false,
-                    //onStage:false,
-                    //date:""
-                    discussions:""
                 });
                 user.save(function(err) {
                     if(err) {
@@ -64,17 +56,9 @@ router.get('/callback',
             if(err) {
                 console.log(err);  // handle errors!
             }
-            if (!err && user.role !== "") {
-                if(req.user.role=='user'){
-                    res.redirect('/home');
-                }else{
-                    res.redirect('/admin');
-                }
-            } else {
-                res.redirect('/roles')
-            }
+            res.redirect('/home');
+          });
         });
-    });
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
