@@ -44,8 +44,8 @@ function post(req,res,next){
         {"questions.$.comments":
           {text:req.body.commentfield,
            user:
-           {username:"req.user.name",
-            avatar:"req.user.profilepic"
+           {username:req.user.name,
+            avatar:req.user.profilepic
           }
         }
         }
@@ -56,7 +56,7 @@ function post(req,res,next){
         }
       }
     )
-  //  res.redirect('/discussion/'+req.params.discussionId)
+
   }
 
 
@@ -66,8 +66,8 @@ function post(req,res,next){
         {questions:
           {questionText:req.body.questionfield,
            author:
-           {username:"req.user.name",
-            avatar:"req.user.profilepic"
+           {username:req.user.name,
+            avatar:req.user.profilepic
           },
           comments:[],
           }
@@ -81,7 +81,11 @@ function post(req,res,next){
     )
     //res.redirect('/discussion/'+req.params.discussionId)
   }
-  return
+
+   req.session.save(function (err) {
+    res.redirect('/discussion/'+req.params.discussionId)
+   });
+
 }
 
 module.exports = {
