@@ -29,11 +29,12 @@ function createDiscussion(req,res,next){
 }
 
 function post(req,res,next){
-  console.log(req.body.Questionid)
+
+  //console.log(req.session)
 
   if(!req.body.questionfield && !req.body.commentfield)
   {
-    console.log ("HAH NEE");
+    console.log ("No input detected");
     return
   }
 
@@ -59,7 +60,6 @@ function post(req,res,next){
 
   }
 
-
   if (req.body.questionfield) {
     Discussion.update({ _id: req.params.discussionId },
       {$push:
@@ -83,7 +83,7 @@ function post(req,res,next){
   }
 
    req.session.save(function (err) {
-    res.redirect('/discussion/'+req.params.discussionId)
+    //res.redirect('/discussion/'+req.params.discussionId)
    });
 
 }
