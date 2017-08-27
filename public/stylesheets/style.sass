@@ -1,0 +1,101 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One)
+$font-stack:    Helvetica, sans-serif
+$primary-color: #333
+
+
+body
+  display: flex
+  flex-flow: column
+  justify-content: space-between
+  font-family: 'Poiret One'
+  color: $primary-color
+  background-color: #FAFAFA
+  margin: 0
+  min-height: 100vh
+
+.index_main
+  display: flex
+  flex-flow: column
+  justify-content: center
+  text-align: center
+  width: 100%
+  h1
+
+    align-self: center
+    max-width: 50%
+    padding-bottom: 50px
+
+a
+  color: black
+  text-decoration: underline
+
+a:hover
+  text-decoration: none
+
+.btn
+  background-color: #ffd92d
+  border: none
+  padding: 5px 10px
+  border-radius: 3px
+  font-family: 'Poiret One', cursive
+  font-size: 1.3em
+
+.index_main
+  .btn:hover
+    background-color: #ffc928
+    box-shadow: 10px 5px 5px #ed8c15
+    transition: all 1s ease
+
+.home
+  height: 80vh
+  font-size: 1em
+  display: flex
+  flex-flow: column
+  justify-content: space-between
+  text-align: center
+  width: 100%
+
+form, a
+  font-size: 1.3em
+  font-weight: bold
+  input
+    margin: 0 25px
+    margin-bottom: 25px
+    font-family: 'Poiret One'
+    font-size: 1.1em
+    background-color: #FFF
+    border-radius: 1px
+
+
+h1#home
+  font-size: 2.5em
+  align-self: center
+  max-width: 50%
+  margin-bottom: 25px
+
+.discussion-block
+  li
+    list-style-type: none
+    font-size: 1.3em
+    padding: 4px 0
+
+header, footer
+  margin: 0
+  background-color: #ffd92d
+  height: 50px
+  width: 100%
+
+footer
+  position:
+  background-color: #ffe054
+  align-self: flex-end
+  box-shadow: -10px 0px 40px #ffe054
+
+.discussion-info, #question-ask
+  margin-top: -130px
+  margin-left: 24px
+  font-size: 1.5em
+  font-weight: bold
+
+#question-ask input
+  margin: 5px

@@ -10,7 +10,7 @@ var expressvalidator = require('express-validator');
 var passport = require('passport');
 var session = require('express-session');
 var primus = require('primus');
-
+var sassMiddleware = require('node-sass-middleware');
 //database config
 var config = require('./config/config.js');
 mongoose.connect(config.database);
@@ -37,6 +37,12 @@ app.set('view engine', 'pug');
 
 
 app.use(cookieParser());
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  indentedSyntax: true, // true = .sass and false = .scss
+  sourceMap: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Body-parser voor data te parsen

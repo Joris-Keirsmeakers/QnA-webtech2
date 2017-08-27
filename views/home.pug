@@ -1,19 +1,26 @@
 extends layout
 
 block content 
-  block current-discussions 
-  h3 Current discussions happening near you!
-  div.discussion-block#discussion-block
-      each val in loadedDiscussions
-        a(href="./discussion/"+val.id)=val.subject
-        br
-          
-  block  create-discussion
-    form(method="post")#discussion-create
-      label(for="subjectfield") What is the subject of your discussion?
-      input(type="text" name="subjectfield" placeholder="enter your subject here").subjectfield
-      button(type="submit") Let's start discussing!
+  header.index_header
+    
+  block.home
+    h1#home Current discussions happening near you!
+    
+    div.discussion-block
+      ul#discussion-block
+        each val in loadedDiscussions
+          li.discussion-element
+            a(href="./discussion/"+val.id)=val.subject
         
+            
+    block  create-discussion
+      form(method="post")#discussion-create
+        label(for="subjectfield") What's today's topic?
+        input(type="text" name="subjectfield" placeholder="enter a subject here").subjectfield
+        button(type="submit").btn Let's get talking!
+        
+        
+  footer.index.footer
   script(src="/primus/primus.js")
   script(src='/js/home.js')
   
