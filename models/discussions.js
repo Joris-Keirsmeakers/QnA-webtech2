@@ -18,11 +18,12 @@ var discussion = new Schema({
       avatar:String},
     comments:[
       {
+        text:String,
         user:{
           username:String,
           avatar:String
         },
-        text:String
+
       }
     ]
     }

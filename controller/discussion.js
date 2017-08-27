@@ -42,45 +42,65 @@ function createDiscussion(req,res,next){
   });
 }
 
-function askQuestion(req,res,next){
+function post(req,res,next){
+  console.log(req.body.Questionid)
 
-    var id = req.params.discussionId;
-    var question = req.body.questionfield
-    console.log(req.user.name);
+  if(!req.body.questionfield && !req.body.commentfield)
+  {
+    console.log ("HAH NEE");
+    return
+  }
+
+  if (req.body.commentfield) {
+
+    Discussion.update({ _id: req.params.discussionId ,"questions._id": req.body.Questionid },
+      {$push:
+        {"questions.$.comments":
+          {text:req.body.commentfield,
+           user:
+           {username:"req.user.name",
+            avatar:"req.user.profilepic"
+          }
+        }
+        }
+      },
+      function (err,user) {
+        if(err){
+          console.log(err);
+        }
+      }
+    )
+  //  res.redirect('/discussion/'+req.params.discussionId)
+  }
+
+
+  if (req.body.questionfield) {
     Discussion.update({ _id: req.params.discussionId },
-
-    //  {$addToSet:{courses:{$each:Selectedcourses}}},
-
       {$push:
         {questions:
           {questionText:req.body.questionfield,
            author:
-           {username:req.user.name,
-            avatar:req.user.profilepic
+           {username:"req.user.name",
+            avatar:"req.user.profilepic"
           },
           comments:[],
           }
         }
       },
-
-
-
       function (err,user) {
-            if(err){
-              console.log(err);
-            }}
-  ),
-
-    console.log("questioeeeaaen delivered", id)
-  };
-
-function comment(req,res){
-  Console.log("HAAAAAAAAAA")
+        if(err){
+          console.log(err);
+        }
+      }
+    )
+    //res.redirect('/discussion/'+req.params.discussionId)
+  }
+  return
 }
+
 module.exports = {
   create: createDiscussion,
-  ask: askQuestion,
-  comment: comment
+  post: post
 //  list: listDiscussions,
 //  read: readDiscussion,
 //  update: updateDiscussion,

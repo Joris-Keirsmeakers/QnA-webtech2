@@ -1,13 +1,32 @@
 extends layout
 
 block content
-  h2=discussion.subject
-  p Created by #{discussion.creator.username}
-  img(src=discussion.creator.avatar)
-
-  form(method="post")#question-ask
-    label(for="questionfield") Ask a new question!
-    input(type="text" name="questionfield" placeholder="enter your question here").questionfield
-    button(type="submit") Ask away!
+  block discussion-info
+    h2=discussion.subject
+    p Created by #{discussion.creator.username}
+    img(src=discussion.creator.avatar)
+  
+    form(method="post")#question-ask
+      label(for="questionfield") Ask a new question!
+      input(type="text" name="questionfield" placeholder="enter your question here").questionfield
+      button(type="submit") Ask away!
+  
+  block questions
+    each val in discussion.questions
+    
+      h4=val.questionText
+      div#comments
+        -for (var i = 0; i < discussion.questions.length; i++)
+          each val in discussion.questions[i].comments
+            p=val.text
+          
+              
+          
+      form(method="post")#comment
+        label(for="commentfield")
+        input(type="hidden" name="Questionid" value=val._id)
+        input(type="text" name="commentfield" placeholder="enter your comment here").commentfield
+        button(type="submit") Comment go!
+      
     
     

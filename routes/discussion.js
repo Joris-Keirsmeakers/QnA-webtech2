@@ -14,6 +14,6 @@ router.get('/:discussionId',function(req,res,next){
 });
 
 router.route('/:discussionId')
-  .post(discussionC.ask);
+  .post(discussionC.post);
 
 module.exports = router;
