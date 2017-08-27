@@ -3,14 +3,17 @@ extends layout
 block content 
   block current-discussions 
   h3 Current discussions happening near you!
-  div.discussion-block
+  div.discussion-block#discussion-block
       each val in loadedDiscussions
         a(href="./discussion/"+val.id)=val.subject
         br
-      
-      
+          
   block  create-discussion
     form(method="post")#discussion-create
       label(for="subjectfield") What is the subject of your discussion?
       input(type="text" name="subjectfield" placeholder="enter your subject here").subjectfield
       button(type="submit") Let's start discussing!
+        
+  script(src="/primus/primus.js")
+  script(src='/js/home.js')
+  

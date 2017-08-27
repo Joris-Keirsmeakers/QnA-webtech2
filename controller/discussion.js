@@ -4,6 +4,8 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
+
+
 const Discussion = require('../models/discussions.js');
 const User = require('../models/users.js');
 
@@ -11,7 +13,6 @@ const User = require('../models/users.js');
 function createDiscussion(req,res,next){
     const discussion = new Discussion({
       location:"",
-      timestamp:"",
       creator:{
         username:req.user.name,
         avatar:req.user.profilepic,
@@ -20,20 +21,22 @@ function createDiscussion(req,res,next){
     });
 
     discussion.save((err, result) => {
-    if (err) {
+      if (err) {
       res.status(500);
       return res.send(err);
     }
-    res.redirect("/home");
-  });
+    return result;
+    })
+    
 }
 
 function post(req,res,next){
-  console.log(req.body.Questionid)
+
+  //console.log(req.session)
 
   if(!req.body.questionfield && !req.body.commentfield)
   {
-    console.log ("HAH NEE");
+    console.log ("No input detected");
     return
   }
 
@@ -59,7 +62,6 @@ function post(req,res,next){
 
   }
 
-
   if (req.body.questionfield) {
     Discussion.update({ _id: req.params.discussionId },
       {$push:
@@ -83,7 +85,7 @@ function post(req,res,next){
   }
 
    req.session.save(function (err) {
-    res.redirect('/discussion/'+req.params.discussionId)
+    //res.redirect('/discussion/'+req.params.discussionId)
    });
 
 }
