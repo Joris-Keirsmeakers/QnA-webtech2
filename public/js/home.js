@@ -11,16 +11,16 @@ primus = Primus.connect("", {
 var form = document.getElementById("discussion-create");
 
 form.addEventListener("submit", function(e){
-    e.preventDefault();
+    //e.preventDefault();
     var subject = form.querySelector(".subjectfield").value;
     console.log(subject);
-    primus.write({ data: subject }); // send our emotion to the server
+    primus.write({  data: subject }); // send our emotion to the server
 
     //primus.emit('foo', { data: subject });
 
 });
 
 primus.on("data", function(data) {
-    console.log("PRIMUS CLIENT DATA RECEIVED!" + data);
+    console.log("PRIMUS CLIENT DATA RECEIVED!" + data.data);
   //  spark.write({ data: subject }); // send our emotion to the server
 })

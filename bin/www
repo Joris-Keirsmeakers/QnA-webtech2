@@ -1,12 +1,11 @@
 #!/usr/bin/env node
-////Hergebruikte code van vorig project////
 
 /**
  * Module dependencies.
  */
 
 var app = require('../app');
-var debug = require('debug')('QnA-webtech2:server');
+var debug = require('debug')('myapp:server');
 var http = require('http');
 
 /**
@@ -22,25 +21,23 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-
-/**
- * Primus
- */
-
+// primus!
 var Primus = require('primus');
-var Primus = new Primus(server);
-Primus.plugin('emit', require('primus-emit'));
-Primus.on('connection', function (spark) {
-    console.log("spark connected");
+var primus = new Primus(server);
+primus.on('connection', function (spark) {
+  spark.write('to the client: hello connnection'); // spark.write send a message only to the one client
+  console.log("primus in action!");
 
-    spark.emits('data',function(data){
+/*  spark.on('data', function(data){
+    // HEADS UP! Instead of handling all separate events here in one handler,
+    // we could better use a plugin like https://github.com/primus/primus-emit
+    console.log(data);
+    primus.write("ALL HEAR" + data);
+    primus.write(data) // primus.write broadcasts a message to all connected clients
 
-        console.log(data);
-        Primus.write("data");
-    })
-    spark.on("foo", function(data) {
-        console.log("ping:", data)
-    })
+  });
+*/
+
 });
 
 /**

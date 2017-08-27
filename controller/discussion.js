@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
 
+
 const Discussion = require('../models/discussions.js');
 const User = require('../models/users.js');
 
@@ -25,11 +26,11 @@ function createDiscussion(req,res,next){
       res.status(500);
       return res.send(err);
     }
-
-    spark.emit('post_discussion', {result: result});
-    //res.redirect("/home");
-  });
 */
+  //  spark.emit('post_discussion', {result: result});
+    //res.redirect("/home");
+  //});
+
 console.log("fu");
 
 }
