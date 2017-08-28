@@ -25,12 +25,14 @@ primus.on("data", function(data) {
       var i =  data[0].questions.length - 1;
       var listItem = "<h4>"+
       data[0].questions[i].questionText+"</h4>"+
+      "<img src="+data[0].questions[i].author.avatar+">"+
+      "<p>"+data[0].questions[i].author.username+"</p>"+
       "<div class=comments></div>"+
       "<form method='post' id=comment>"+
       "<label for='commentfield'></label>"+
       "<input type='hidden' name='Questionid' value="+ data[0].questions[i]._id+">"+
-      "<input type='text' name='commentfield' placeholder='enter your comment here' class='commentfield'> "+
-      "<button type='submit'> Comment go!</button>"+
+      "<input type='text' name='commentfield' placeholder='Leave a comment' class='commentfield'> "+
+      "<button type='submit' class='btn'> Comment go!</button>"+
       "</form>";
 
       //console.log(listItem);
