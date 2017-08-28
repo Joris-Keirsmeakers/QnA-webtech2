@@ -1,0 +1,1 @@
+primus=Primus.connect("",{reconnect:{max:1/0,min:500,retries:10}});var x=document.getElementsByClassName("commentform");for(i=0;i<x.length;i++){var form=x[i];form.addEventListener("submit",function(e){e.preventDefault(),console.log("hey");var r=form.querySelector(".commentfield").value;console.log(r);var o=form.querySelector(".QuestionId").value;primus.write({cfield:r,id:o})})}
