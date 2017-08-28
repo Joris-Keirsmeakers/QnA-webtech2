@@ -3,15 +3,14 @@ $font-stack:    Helvetica, sans-serif
 $primary-color: #333
 
 
+
 body
-  display: flex
-  flex-flow: column
-  justify-content: space-between
+  margin: 0
   font-family: 'Poiret One'
   color: $primary-color
   background-color: #FAFAFA
-  margin: 0
   min-height: 100vh
+  //background-size:40px 60px
 
 .index_main
   display: flex
@@ -33,7 +32,7 @@ a:hover
   text-decoration: none
 
 .btn
-  background-color: #ffd92d
+  background-color: #2bce64
   border: none
   padding: 5px 10px
   border-radius: 3px
@@ -42,8 +41,8 @@ a:hover
 
 .index_main
   .btn:hover
-    background-color: #ffc928
-    box-shadow: 10px 5px 5px #ed8c15
+    background-color: #2bce64
+    box-shadow: 10px 5px 5px #21ba87
     transition: all 1s ease
 
 .home
@@ -55,7 +54,7 @@ a:hover
   text-align: center
   width: 100%
 
-form, a
+form, a, h4, li
   font-size: 1.3em
   font-weight: bold
   input
@@ -65,6 +64,7 @@ form, a
     font-size: 1.1em
     background-color: #FFF
     border-radius: 1px
+    width: 40%
 
 
 h1#home
@@ -81,21 +81,88 @@ h1#home
 
 header, footer
   margin: 0
-  background-color: #ffd92d
+  background-color: #2bce64
+
   height: 50px
   width: 100%
 
-footer
-  position:
-  background-color: #ffe054
-  align-self: flex-end
-  box-shadow: -10px 0px 40px #ffe054
+header
+  //graciously provided by http://lea.verou.me/css3patterns/#diagonal-stripes
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(122, 252, 93,.5) 35px, rgba(122, 252, 93,.5) 70px)
 
-.discussion-info, #question-ask
-  margin-top: -130px
-  margin-left: 24px
+footer
+  position: fixed
+  bottom: 0
+  align-self: flex-end
+
+.discussion-info
+  p, h2
+    margin-top: 0
+  h2
+    flex-grow: 2
+  display: flex
+  justify-content: space-around
+  align-items:flex-starts
+  padding-top: 15px
+  margin-left: 25px
   font-size: 1.5em
   font-weight: bold
 
-#question-ask input
-  margin: 5px
+#question-ask
+  margin-left: 25px
+  input
+
+
+#questions
+  display: flex
+  flex-flow: column nowrap
+  height: 50vh
+  margin-left: 25px
+  img
+    border-radius: 45px
+    height: 50px
+    width: 50px
+  .question
+    background-color: #EAEAEA
+    padding: 10px
+    margin-top: 5px
+    .authorName
+      font-weight: bold
+
+
+.comments
+  li
+    list-style-type: none
+  p
+    font-weight: bold
+  margin-left: 35px
+  div.comments
+    padding-left: 25px
+  ul
+    background-color: #DADADA
+    padding: 6px
+    margin: 3px
+
+
+.details
+  display: flex
+  justify-content: flex-start
+  align-items: baseline
+  margin-left: 0
+  padding: 0 5px
+
+.commentUsername
+  font-size: 0.7em
+
+
+.comments
+
+
+#creatorAvatar
+    width: 75px
+    height: 75px
+    border-radius: 45px
+
+
+.question:last-child
+  margin-bottom: 75px
