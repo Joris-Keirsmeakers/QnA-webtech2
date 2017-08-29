@@ -7,21 +7,25 @@ var discussion = new Schema({
   time : { type : Date, default: Date.now },
   creator:{
     username: String,
-    avatar:String
+    avatar:String,
+    id:String
   },
   subject: String,
+  locked: { type : Boolean, default: 0 },
   questions:[
     {
     questionText:String,
     author:{
       username:String,
-      avatar:String},
+      avatar:String,
+      id: String},
     comments:[
       {
         text:String,
         user:{
           username:String,
-          avatar:String
+          avatar:String,
+          id:String
         },
 
       }
