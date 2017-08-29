@@ -4,16 +4,23 @@ block content
   header.index_header
   block discussion-info
     div.discussion-info
+      - if (discussion.creator.id == userid && discussion.locked == false)
+          form(method="post")#discussion_lock
+            input(type="hidden" name="discussionId" value= discussion._id).discussionId
+            button.Btn_lock      
       h2=discussion.subject
-      p Created by #{discussion.creator.username}
+      p Created by #{discussion.creator.username}    
       img(src=discussion.creator.avatar)#creatorAvatar
+    
         
-
-  form(method="post")#question-ask
-    label(for="questionfield") Ask a new question!
-    input(type="text" name="questionfield" placeholder="What do you want to ask?").questionfield
-    button(type="submit").btn Ask away!
-    input(type="hidden" name="discussionId" value= discussion._id).discussionId
+        
+        
+  - if(discussion.locked == false)
+    form(method="post")#question-ask
+      label(for="questionfield") Ask a new question!
+      input(type="text" name="questionfield" placeholder="What do you want to ask?").questionfield
+      button(type="submit").btn Ask away!
+      input(type="hidden" name="discussionId" value= discussion._id).discussionId
   
   block#questions
     -for (var i = 0; i < discussion.questions.length; i++)
@@ -29,16 +36,17 @@ block content
                 div.details
                   img(src=comment.user.avatar).commentAvatar
                   p.commentUsername=comment.user.username
-              
-        form(method="post").commentform
-          label(for="commentfield")
-          input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
-          input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
-          button(type="submit").btn Comment go!
+        -if(discussion.locked == false)        
+          form(method="post").commentform
+            label(for="commentfield")
+              input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
+              input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
+              button(type="submit").btn Comment go!
     
   footer.index.footer            
   script(src="/primus/primus.js")
   script(src='/js/questions.js')
+  script(src="/js/lock.js")
   //script(src='/js/comments.js')
             
     

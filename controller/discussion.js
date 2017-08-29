@@ -12,11 +12,13 @@ const User = require('../models/users.js');
 
 function createDiscussion(req,res,next){
   if (req.body.subjectfield) {
+    console.log(req.session.passport)
     const discussion = new Discussion({
       location:"",
       creator:{
         username:req.user.name,
         avatar:req.user.profilepic,
+        id:req.session.passport.user
       },
       subject:req.body.subjectfield,
     });
@@ -49,7 +51,8 @@ function post(req,res,next){
           {text:req.body.commentfield,
            user:
            {username:req.user.name,
-            avatar:req.user.profilepic
+            avatar:req.user.profilepic,
+            id:req.user._id
           }
         }
         }
@@ -70,7 +73,8 @@ function post(req,res,next){
           {questionText:req.body.questionfield,
            author:
            {username:req.user.name,
-            avatar:req.user.profilepic
+            avatar:req.user.profilepic,
+            id:req.user._id
           },
           comments:[],
           }

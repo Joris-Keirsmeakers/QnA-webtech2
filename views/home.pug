@@ -11,6 +11,8 @@ block content
         each val in loadedDiscussions
           li.discussion-element
             a(href="./discussion/"+val.id)=val.subject
+            if (val.locked)
+              div.lock              
         
             
     block  create-discussion
@@ -23,4 +25,5 @@ block content
   footer.index.footer
   script(src="/primus/primus.js")
   script(src='/js/home.js')
+  
   

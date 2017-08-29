@@ -30,7 +30,8 @@ primus.on('connection', function (spark) {
       console.log("data",data)
       if(!!data && data.subject){
         setTimeout(function(){
-          discussions.findOne({"subject":data.subject}, function(err,discussion){
+          discussions.findOne({"subject":data.subject}).sort({_id: -1})
+            .exec(function(err,discussion){
             console.log("discussion",discussion)
             if (discussion) {
               primus.write(discussion)
@@ -51,7 +52,7 @@ primus.on('connection', function (spark) {
         },500)
       }
 
-      if(!!data && data.comment){
+      /*if(!!data && data.comment){
         setTimeout(function(){
           discussions.findOne({"subject":data.comment}, function(err,comment){
             console.log("discussion",comment)
@@ -59,8 +60,23 @@ primus.on('connection', function (spark) {
               primus.write(comment)
             }
           })
-        },500)
+        },500)}*/
+
+        if(data.lock){
+          console.log("locking thread")
+          discussions.update({ _id: data.lock},{$set:{locked: true}},
+              function (err,locked) {
+                if(err){
+                  console.log(err);
+
+                }
+                console.log(locked)
+                primus.write(locked)
+              });
+              console.log("locked")
+
       }
+
 
     });
 });

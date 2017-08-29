@@ -9,7 +9,7 @@ var discussions = require('../models/discussions.js')
 var discussionC = require('../controller/discussion.js');
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/',checkAuthentication, function(req, res) {
   discussions.find({}, function(err, discussion) {
     res.render('home.pug', {loadedDiscussions:discussion});
   });
@@ -18,5 +18,15 @@ router.get('/', function(req, res) {
 
 router.route('/')
   .post(discussionC.create);
+
+  function checkAuthentication(req,res,next){
+      if(req.isAuthenticated()){
+                next();
+      } else{
+          res.redirect("/");
+          console.log("authentication failed")
+
+        }
+    }
 
 module.exports = router;
