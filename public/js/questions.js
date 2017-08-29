@@ -17,21 +17,22 @@ form.addEventListener("submit", function(e){
 });
 
 primus.on("data", function(data) {
-  console.log(data)
-  console.log("Data received!" + data)
-  if(data[0].questions){
-    console.log(data[0]._id, form.querySelector(".discussionId").value)
-    console.log("adding question")
-    if(data[0]._id = form.querySelector(".discussionId").value){
-      var i =  data[0].questions.length - 1;
+
+  if(data.type == "question"){
+    console.log(data)
+  //  console.log("Data received!" + data)
+    console.log(data.question[0]._id, form.querySelector(".discussionId").value)
+  //  console.log("adding question")
+    if(data.question._id = form.querySelector(".discussionId").value){
+      var i =  data.question[0].questions.length - 1;
       var listItem = "<h4>"+
-      data[0].questions[i].questionText+"</h4>"+
-      "<img src="+data[0].questions[i].author.avatar+">"+
-      "<p>"+data[0].questions[i].author.username+"</p>"+
+      data.question[0].questions[i].questionText+"</h4>"+
+      "<img class ='authorAvatar' src="+data.question[0].questions[i].author.avatar+">"+
+      "<p class='authorname'>"+data.question[0].questions[i].author.username+"</p>"+
       "<div class=comments></div>"+
       "<form method='post' id=comment>"+
       "<label for='commentfield'></label>"+
-      "<input type='hidden' name='Questionid' value="+ data[0].questions[i]._id+">"+
+      "<input type='hidden' name='Questionid' value="+ data.question[0].questions[i]._id+">"+
       "<input type='text' name='commentfield' placeholder='Leave a comment' class='commentfield'> "+
       "<button type='submit' class='btn'> Comment go!</button>"+
       "</form>";

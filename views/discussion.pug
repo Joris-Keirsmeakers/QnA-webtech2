@@ -28,7 +28,7 @@ block content
         h4.questionText=discussion.questions[i].questionText
         img(src=discussion.questions[i].author.avatar).authorAvatar
         p.authorName=discussion.questions[i].author.username
-        div.comments
+        div.comments#comment-list
           for comment in discussion.questions[i].comments
             ul
               li
