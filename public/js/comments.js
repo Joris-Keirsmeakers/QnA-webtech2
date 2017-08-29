@@ -9,20 +9,20 @@ primus = Primus.connect("", {
 
 
 
-var x = document.getElementsByClassName("commentform");
+var forms = document.getElementsByClassName("commentform");
 
-for (i = 0; i < x.length; i++) {
-    var form = x[i];
+Array.from(forms).forEach(function(form){
     form.addEventListener("submit",function(e){
+      e.preventDefault();
+      //console.log("hey");
+      //console.log(form)
+      var id = form.children[0].value;
+      var comment = form.children[1].value;
+      console.log(comment, id)
 
-    e.preventDefault();
-    console.log("hey")
-    var cfield = form.querySelector(".commentfield").value;
-    console.log(cfield)
-    var id = form.querySelector(".QuestionId").value;
-    primus.write({ cfield:cfield, id:id });
+    primus.write({ comment:comment, id:id });
   });
-}
+});
 /*
 primus.on("data", function(data) {
   console.log(data)

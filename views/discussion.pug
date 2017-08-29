@@ -38,16 +38,15 @@ block content
                   p.commentUsername=comment.user.username
         -if(discussion.locked == false)        
           form(method="post").commentform
-            label(for="commentfield")
-              input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
-              input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
-              button(type="submit").btn Comment go!
+            input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
+            input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
+            button(type="submit").btn Comment go!
     
   footer.index.footer            
   script(src="/primus/primus.js")
   script(src='/js/questions.js')
   script(src="/js/lock.js")
-  //script(src='/js/comments.js')
+  script(src='/js/comments.js')
             
     
     

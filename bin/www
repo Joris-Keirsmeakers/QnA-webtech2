@@ -52,15 +52,16 @@ primus.on('connection', function (spark) {
         },500)
       }
 
-      /*if(!!data && data.comment){
+      if(data.id && data.comment){
         setTimeout(function(){
-          discussions.findOne({"subject":data.comment}, function(err,comment){
+          console.log("primus make fancy comments work!")
+          discussions.findOne({"questions._id":data.id}, function(err,comment){
             console.log("discussion",comment)
-            if (comment) {
+            /*if (comment) {
               primus.write(comment)
-            }
+            }*/
           })
-        },500)}*/
+        },500)}
 
         if(data.lock){
           console.log("locking thread")

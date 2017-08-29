@@ -19,8 +19,9 @@ form.addEventListener("submit", function(e){
 primus.on("data", function(data) {
   console.log(data)
   console.log("Data received!" + data)
-  if(data.questions){
+  if(data[0].questions){
     console.log(data[0]._id, form.querySelector(".discussionId").value)
+    console.log("adding question")
     if(data[0]._id = form.querySelector(".discussionId").value){
       var i =  data[0].questions.length - 1;
       var listItem = "<h4>"+
