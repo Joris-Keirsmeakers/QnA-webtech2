@@ -17,6 +17,7 @@ lock.addEventListener("submit",function(e){
 })
 
 primus.on("data", function(data){
-  if(data.lock)
-
+  if(data.lock){
+    console.log(data.lock)
+  }
 })

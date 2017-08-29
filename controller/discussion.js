@@ -40,7 +40,7 @@ function post(req,res,next){
   if(!req.body.questionfield && !req.body.commentfield)
   {
     console.log ("No input detected");
-    //return
+    return
   }
 
   if (req.body.commentfield) {

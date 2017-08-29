@@ -20,7 +20,7 @@ primus.on("data", function(data) {
   console.log(data)
   console.log("Data received!" + data)
   if (data && data.subject) {
-    var listItem="<li> <a href=/discussion/"+data._id+">"+data.subject+"<button class=delete>x</li>"
+    var listItem="<li> <a href=/discussion/"+data._id+">"+data.subject+"</li>"
     var div = document.createElement("div");
     div.innerHTML = listItem;
     document.getElementById("discussion-block").appendChild(div);

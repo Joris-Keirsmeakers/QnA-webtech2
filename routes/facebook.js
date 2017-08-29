@@ -62,7 +62,9 @@ router.get('/callback',
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
-    done(null, user.id);
+    console.log("serializing")
+    done(null, user.id, user.name, user.profilepic);
+    console.log(user)
 });
 
 passport.deserializeUser(function(id, done) {
