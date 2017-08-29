@@ -128,9 +128,7 @@ footer {
     flex-grow: 2;
   }
 
-
   .Btn_lock{
-
     background-color: #2bce64;
     border:none;
     border-radius: 3px;
@@ -143,7 +141,7 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items:flex-start;
-  padding-top: 15px;
+  padding: 15px;
   margin-left: 25px;
   font-size: 1.5em;
   font-weight: bold;
@@ -159,7 +157,7 @@ footer {
   display: flex;
   flex-flow: column nowrap;
   height: 50vh;
-  margin-left: 25px;
+  margin: 0 25px;
 
   img {
     border-radius: 45px;
