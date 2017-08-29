@@ -96,6 +96,8 @@ footer {
     align-self: center;
     margin-bottom: 0;
     padding: 0 10px; }
+  .discussion-info p {
+    text-align: right; }
   .discussion-info h2 {
     flex-grow: 2; }
   .discussion-info .Btn_lock {
