@@ -69,6 +69,9 @@ h1#home {
   font-size: 1.3em;
   padding: 4px 0; }
 
+#discussion-create {
+  margin-bottom: 75px; }
+
 header, footer {
   margin: 0;
   background-color: #2bce64;
@@ -87,7 +90,7 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  padding-top: 15px;
+  padding: 15px;
   margin-left: 25px;
   font-size: 1.5em;
   font-weight: bold; }
@@ -116,7 +119,7 @@ footer {
   display: flex;
   flex-flow: column nowrap;
   height: 50vh;
-  margin-left: 25px; }
+  margin: 0 25px; }
   #questions img {
     border-radius: 45px;
     height: 50px;

@@ -34,7 +34,7 @@ primus.on('connection', function (spark) {
             .exec(function(err,discussion){
             console.log("discussion",discussion)
             if (discussion) {
-              primus.write(discussion)
+              primus.write({discussion:discussion, type:"discussion"})
             }
           })
         },500)
@@ -46,21 +46,24 @@ primus.on('connection', function (spark) {
           discussions.find({_id: data.id}, function(err,question){
             console.log("discussion",question)
             if (question) {
-            primus.write(question)
+            primus.write({question:question, type:"question"})
             }
           })
         },500)
       }
 
-      /*if(!!data && data.comment){
+      if(data.id && data.comment){
         setTimeout(function(){
-          discussions.findOne({"subject":data.comment}, function(err,comment){
+          console.log("primus make fancy comments work!")
+          discussions.findOne({"questions._id":data.id}, function(err,comment){
             console.log("discussion",comment)
+            var id = data.id;
+
             if (comment) {
-              primus.write(comment)
+              primus.write({ comment:comment, type:"comment", id:data.id })
             }
           })
-        },500)}*/
+        },500)}
 
         if(data.lock){
           console.log("locking thread")

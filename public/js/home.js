@@ -17,12 +17,13 @@ form.addEventListener("submit", function(e){
 });
 
 primus.on("data", function(data) {
-  console.log(data)
-  console.log("Data received!" + data)
-  if (data && data.subject) {
-    var listItem="<li> <a href=/discussion/"+data._id+">"+data.subject+"</li>"
-    var div = document.createElement("div");
+  if (data.type == "discussion") {
+    console.log(data)
+    console.log("Data received!" + data.type)
+    var listItem=" <a href=/discussion/"+data.discussion._id+">"+data.discussion.subject
+    var div = document.createElement("li");
     div.innerHTML = listItem;
     document.getElementById("discussion-block").appendChild(div);
   }
+    window.location.replace("/home")
 })

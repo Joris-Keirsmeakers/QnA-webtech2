@@ -16,7 +16,7 @@ block content
         
         
   - if(discussion.locked == false)
-    form(method="post")#question-ask
+    form(method="post" action="#")#question-ask
       label(for="questionfield") Ask a new question!
       input(type="text" name="questionfield" placeholder="What do you want to ask?").questionfield
       button(type="submit").btn Ask away!
@@ -26,9 +26,10 @@ block content
     -for (var i = 0; i < discussion.questions.length; i++)
       div.question
         h4.questionText=discussion.questions[i].questionText
-        img(src=discussion.questions[i].author.avatar).authorAvatar
-        p.authorName=discussion.questions[i].author.username
-        div.comments
+        div.details
+          img(src=discussion.questions[i].author.avatar).authorAvatar
+          p.authorName=discussion.questions[i].author.username
+        div.comments#comment-list
           for comment in discussion.questions[i].comments
             ul
               li
@@ -38,16 +39,15 @@ block content
                   p.commentUsername=comment.user.username
         -if(discussion.locked == false)        
           form(method="post").commentform
-            label(for="commentfield")
-              input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
-              input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
-              button(type="submit").btn Comment go!
+            input(type="hidden" name="Questionid" value=discussion.questions[i]._id).questionId
+            input(type="text" name="commentfield" placeholder="Leave a comment").commentfield
+            button(type="submit").btn Comment go!
     
   footer.index.footer            
   script(src="/primus/primus.js")
   script(src='/js/questions.js')
   script(src="/js/lock.js")
-  //script(src='/js/comments.js')
+  script(src='/js/comments.js')
             
     
     

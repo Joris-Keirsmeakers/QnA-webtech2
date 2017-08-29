@@ -9,45 +9,50 @@ primus = Primus.connect("", {
 
 
 
-var x = document.getElementsByClassName("commentform");
+var forms = document.getElementsByClassName("commentform");
 
-for (i = 0; i < x.length; i++) {
-    var form = x[i];
+Array.from(forms).forEach(function(form){
     form.addEventListener("submit",function(e){
+      //e.preventDefault();
+      //console.log("hey");
+      //console.log(form)
+      var id = form.children[0].value;
+      var comment = form.children[1].value;
+      console.log(comment, id)
 
-    e.preventDefault();
-    console.log("hey")
-    var cfield = form.querySelector(".commentfield").value;
-    console.log(cfield)
-    var id = form.querySelector(".QuestionId").value;
-    primus.write({ cfield:cfield, id:id });
+    primus.write({ comment:comment, id:id });
   });
-}
-/*
-primus.on("data", function(data) {
-  console.log(data)
-  console.log("Data received!" + data)
-  if(data){
-    console.log(data[0]._id, form.querySelector(".discussionId").value)
-    if(data[0]._id = form.querySelector(".discussionId").value){
-      var i =  data[0].questions.length - 1;
-      var listItem = "<h4>"+
-      data[0].questions[i].questionText+"</h4>"+
-      "<div class=comments></div>"+
-      "<form method='post' id=comment>"+
-      "<label for='commentfield'></label>"+
-      "<input type='hidden' name='Questionid' value="+ data[0].questions[i]._id+">"+
-      "<input type='text' name='commentfield' placeholder='enter your comment here' class='commentfield'> "+
-      "<button type='submit'> Comment go!</button>"+
-      "</form>";
-
-      //console.log(listItem);
-      var div = document.createElement("div");
-      div.innerHTML = listItem;
-      div.classList.add('question');
-      document.getElementById("questions").appendChild(div);
-    }
-  }
-
 });
-*/
+
+primus.on("data", function(data) {
+
+  if(data.type=="comment"){
+    var currentQ
+    console.log(data)
+    //console.log("Data received!" + data.type)
+    //Finding the question that the comment was made on:
+      for(i=0; i<data.comment.questions.length; i++){
+        currentQ = data.comment.questions[i]
+
+        //console.log(currentQ)
+       if (currentQ._id == data.id) {
+          var Neededquestion = currentQ
+          var nthchild = i
+        }
+      }
+      //console.log(Neededquestion)
+      var i =  Neededquestion.comments.length - 1;
+      var c=  Neededquestion.comments[i]
+      //console.log(i);
+      var ul = document.createElement("ul");
+      ul.innerHTML = "<li><p class='comment'>"+c.text+"</p>"+
+      "<div class='details'><img src="+c.user.avatar+"/>"+
+      "<p class='commentUsername'>"+c.user.username+"</p></div></li>"
+
+    var question = document.getElementsByClassName('comments');
+    console.log(question);
+    console.log(question[nthchild])
+    question[nthchild].appendChild(ul)
+    }
+      window.location.replace("/discussion/"+data.question[0]._id)
+  });

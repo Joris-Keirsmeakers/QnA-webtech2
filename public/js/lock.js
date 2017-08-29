@@ -7,6 +7,7 @@ primus = Primus.connect("", {
 });
 console.log("test")
 
+
 var lock = document.getElementById("discussion_lock")
 
 if(lock){
@@ -18,7 +19,7 @@ lock.addEventListener("submit",function(e){
 })
 
 primus.on("data", function(data){
-  if(data.n=1){
+  if(data.n==1){
     console.log("Closing forms")
     var forms= document.getElementsByTagName('form')
     console.log(forms)
