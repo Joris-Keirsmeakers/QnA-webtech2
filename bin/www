@@ -68,9 +68,13 @@ primus.on('connection', function (spark) {
               function (err,locked) {
                 if(err){
                   console.log(err);
+
                 }
+                console.log(locked)
+                primus.write(locked)
               });
               console.log("locked")
+
       }
 
 

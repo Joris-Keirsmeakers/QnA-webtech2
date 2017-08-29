@@ -19,7 +19,7 @@ form.addEventListener("submit", function(e){
 primus.on("data", function(data) {
   console.log(data)
   console.log("Data received!" + data)
-  if(data){
+  if(data.questions){
     console.log(data[0]._id, form.querySelector(".discussionId").value)
     if(data[0]._id = form.querySelector(".discussionId").value){
       var i =  data[0].questions.length - 1;

@@ -9,6 +9,7 @@ console.log("test")
 
 var lock = document.getElementById("discussion_lock")
 
+if(lock){
 lock.addEventListener("submit",function(e){
   e.preventDefault();
   var id=lock.querySelector(".discussionId").value;
@@ -17,7 +18,14 @@ lock.addEventListener("submit",function(e){
 })
 
 primus.on("data", function(data){
-  if(data.lock){
-    console.log(data.lock)
+  if(data.n=1){
+    console.log("Closing forms")
+    var forms= document.getElementsByTagName('form')
+    console.log(forms)
+    for (i = 0; i < forms.length; i++) {
+      var form = forms[i]
+      form.style.display="none";
+    }
   }
 })
+}
