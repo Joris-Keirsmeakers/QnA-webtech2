@@ -16,7 +16,7 @@ block content
         
         
   - if(discussion.locked == false)
-    form(method="post")#question-ask
+    form(method="post" action="#")#question-ask
       label(for="questionfield") Ask a new question!
       input(type="text" name="questionfield" placeholder="What do you want to ask?").questionfield
       button(type="submit").btn Ask away!

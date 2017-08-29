@@ -28,7 +28,7 @@ primus.on("data", function(data) {
       var listItem = "<h4>"+
       data.question[0].questions[i].questionText+"</h4>"+
       "<img class ='authorAvatar' src="+data.question[0].questions[i].author.avatar+">"+
-      "<p class='authorname'>"+data.question[0].questions[i].author.username+"</p>"+
+      "<p class='authorName'>"+data.question[0].questions[i].author.username+"</p>"+
       "<div class=comments></div>"+
       "<form method='post' id=comment>"+
       "<label for='commentfield'></label>"+
@@ -43,6 +43,7 @@ primus.on("data", function(data) {
       div.classList.add('question');
       document.getElementById("questions").appendChild(div);
     }
-  }
 
+  }
+  window.location.replace("/discussion/"+data.question[0]._id)
 });

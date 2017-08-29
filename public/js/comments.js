@@ -54,4 +54,5 @@ primus.on("data", function(data) {
     console.log(question[nthchild])
     question[nthchild].appendChild(ul)
     }
+      window.location.replace("/discussion/"+data.question[0]._id)
   });

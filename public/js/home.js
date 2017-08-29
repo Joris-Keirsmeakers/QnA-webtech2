@@ -25,4 +25,5 @@ primus.on("data", function(data) {
     div.innerHTML = listItem;
     document.getElementById("discussion-block").appendChild(div);
   }
+    window.location.replace("/home")
 })
